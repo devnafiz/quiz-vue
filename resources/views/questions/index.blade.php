@@ -67,7 +67,7 @@
                        
                    </div>
 
-
+                 <hr>
                 @endforeach
 
                 {{$questions->links()}}
