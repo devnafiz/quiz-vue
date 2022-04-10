@@ -48,10 +48,16 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h2>{{$val->title}}</h2>
+                                    <h2><a href="{{$val->url}}">{{$val->title}}</a></h2>
                                     
                                 </div>
                                 <div class="card-body">
+                                    <p class="lead">
+                                        asked by
+                                        <a href="{{$val->user->url}}">{{$val->user->name}}</a>
+                                        <small class="text-muted">{{$val->created_at}}</small>
+                                        
+                                    </p>
                                     <p>{{str_limit($val->body,250)}}</p>
                                 </div>
                                 
