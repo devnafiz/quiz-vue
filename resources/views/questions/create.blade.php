@@ -23,8 +23,9 @@
             }
         </style>
     </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    <body >
+      <section>
+        <div class="container">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0  sm:block">
                     @auth
@@ -39,7 +40,7 @@
                 </div>
             @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+            <div class=" mx-auto sm:px-6 lg:px-8">
                 <div class=" justify-center pt-8 sm:justify-start sm:pt-0">
 
                     <div class="card">
@@ -47,7 +48,7 @@
                             <div class="align-item-center">
                                 <h2>All Question</h2>
                                 <div class="ml-auto pull-right">
-                                    <a href="{{route('questions.create')}}" class="btn btn-primary">Add Question</a>
+                                    <a href="{{route('questions.index')}}" class="btn btn-primary">Back to all Question </a>
                                     
                                 </div>
                                 
@@ -57,46 +58,42 @@
                         
                     </div>
                  <div class="container">
-                      @foreach($questions as $key=>$val)
+                    <div class="row">
 
-                   <div class="row">
-                        <div class="col-lg-4 counters ">
-                            <div class="vote">
-                               <strong>{{ $val->votes}}</strong> {{str_plural('vote',$val->votes)}}
-                            </div>
-                            <div class="status {{$val->status}}">
-                               <strong>{{ $val->answers}}</strong> {{str_plural('answer',$val->answers)}}
-                            </div>
-                            <div class="view">
-                               {{ $val->views ." ".str_plural('view',$val->views)}}
-                            </div>
-                        </div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h2><a href="{{$val->url}}">{{$val->title}}</a></h2>
-                                    
-                                </div>
+
                                 <div class="card-body">
-                                    <p class="lead">
-                                        asked by
-                                        <a href="{{$val->user->url}}">{{$val->user->name}}</a>
-                                        <small class="text-muted">{{$val->created_at}}</small>
+                                    <form action="{{route('questions.store')}}" method="POST">
+                                        <div class="form-group">
+                                            <label for="question-title">Question Title</label>
+                                            <input type="text" name="title" class="form-control" id="question-title" >
+                                            
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="question-body">Explain your question</label>
+                                            
+                                            <textarea name="body" id="question-body" rows="10" class="form-control">
+                                                
+                                            </textarea>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                          
+                                          <button type="submit" class="btn btn-primary">Submit</button>
+                                            
+                                        </div>
                                         
-                                    </p>
-                                    <p>{{str_limit($val->body,250)}}</p>
+                                    </form>
+                                    
                                 </div>
                                 
                             </div>
                             
                         </div>
-                       
-                   </div>
-
-                 <hr>
-                @endforeach
-
-                {{$questions->links()}}
+                        
+                    </div>
                      
                  </div>
 
@@ -113,8 +110,9 @@
                
             </div>
         </div>
+    </div>
 
-
+</section>
         <style type="text/css">
             
             .counters{
