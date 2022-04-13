@@ -26,7 +26,7 @@
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="hidden fixed top-0 right-0  sm:block">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else
@@ -40,12 +40,23 @@
             @endif
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
+                <div class=" justify-center pt-8 sm:justify-start sm:pt-0">
                  <div class="container">
                       @foreach($questions as $key=>$val)
 
                    <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-4 counters ">
+                            <div class="vote">
+                               <strong>{{ $val->votes}}</strong> {{str_plural('vote',$val->votes)}}
+                            </div>
+                            <div class="status {{$val->status}}">
+                               <strong>{{ $val->answers}}</strong> {{str_plural('answer',$val->answers)}}
+                            </div>
+                            <div class="view">
+                               {{ $val->views ." ".str_plural('view',$val->views)}}
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
                             <div class="card">
                                 <div class="card-header">
                                     <h2><a href="{{$val->url}}">{{$val->title}}</a></h2>
@@ -87,5 +98,39 @@
                
             </div>
         </div>
+
+
+        <style type="text/css">
+            
+            .counters{
+
+                 width: 100px;
+                height: 60px;
+                font-size: 10px;
+                text-align: center;
+            }
+            .counters strong{
+                display: block;
+                font-size: 19px;
+            }
+            .status .unanswer{
+                border: none;
+            }
+
+             .answered{
+
+                border: 1px solid green;
+                color: green;
+            }
+            .answered-accepted{
+                background: green;
+                color: #fff;
+            }
+            .view{
+                margin-top: 10px;
+            }
+            
+
+        </style>
     </body>
 </html>
