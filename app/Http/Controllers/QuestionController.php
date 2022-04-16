@@ -42,7 +42,8 @@ class QuestionController extends Controller
      */
     public function store(AskQuestionRequest $request)
     {
-        dd($request);
+        $request->user()->questions()->create($request->all());
+        return redirect('/questions')->with('success','succesfully inssert');
     }
 
     /**

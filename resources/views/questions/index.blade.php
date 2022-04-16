@@ -57,6 +57,7 @@
                         
                     </div>
                  <div class="container">
+                    @include('layouts._messages')
                       @foreach($questions as $key=>$val)
 
                    <div class="row">
