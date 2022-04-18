@@ -79,7 +79,16 @@
 
                                     <div class="ml-auto">
                                         <a href="{{route('questions.edit',$val->id)}}" class="btn btn-sm btn-info pull-right">Edit</a>
+
+                                        <form action="{{route('questions.destroy',$val->id)}}" method="POST" class="form-delete">
+                                            @method('DELETE')
+                                             @csrf
+                                             <button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Are you sure')">delete</button>
+                                            
+                                        </form>
+                                       
                                     </div>
+
                                     
                                 </div>
                                 <div class="card-body">
@@ -151,7 +160,10 @@
             .view{
                 margin-top: 10px;
             }
-            
+            form.form-delete{
+                display: inline;
+                margin: 2px;
+            }
 
         </style>
     </body>

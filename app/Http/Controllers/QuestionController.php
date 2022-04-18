@@ -65,8 +65,10 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        $questions =Question::findOrFail($id);
-         return view('questions.edit',compact('questions'));
+        $data['question'] = Question::find($id);
+
+        //dd($question);
+         return view('questions.edit',$data);
 
     }
 
@@ -88,8 +90,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
+
     {
-        //
+        //dd();
+        Question::where('id',$id)->delete();
+
+        return redirect('/questions')->with('success','delete succesfully');
     }
 }
