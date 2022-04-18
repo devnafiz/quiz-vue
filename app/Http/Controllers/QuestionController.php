@@ -65,7 +65,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $questions =Question::findOrFail($id);
+         return view('questions.edit',compact('questions'));
+
     }
 
     /**
