@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use App\Models\Question;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -35,6 +36,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+             Route::bind('slug',function($slug){
+
+               $question= Question::where('slug',$slug)->first();
+               return $question;
+             });
+      
+
         $this->configureRateLimiting();
 
         $this->routes(function () {
