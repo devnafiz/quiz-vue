@@ -78,8 +78,9 @@
                                     <h2><a href="{{$val->url}}">{{$val->title}}</a></h2>
 
                                     <div class="ml-auto">
+                                       
                                         <a href="{{route('questions.edit',$val->id)}}" class="btn btn-sm btn-info pull-right">Edit</a>
-
+                                      
                                         <form action="{{route('questions.destroy',$val->id)}}" method="POST" class="form-delete">
                                             @method('DELETE')
                                              @csrf
