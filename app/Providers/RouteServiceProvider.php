@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
              Route::bind('slug',function($slug){
 
                $question= Question::where('slug',$slug)->first();
-               return $question;
+               return $question ? $question : abort(404);
              });
       
 
